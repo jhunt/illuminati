@@ -1,13 +1,14 @@
 CC := gcc
+CFLAGS := -Wall
 LDFLAGS := -lpng
 
-all: ogets
+all: illuminati
 
-ogets: ogets.o
+illuminati: illuminati.o
 
 %: %.o
 	$(CC) -o $@ $@.o $(LDFLAGS)
 
 clean:
 	rm -f *.o
-	rm -f ogets
+	rm -f illuminati

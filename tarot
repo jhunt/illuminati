@@ -1,0 +1,22 @@
+#!/usr/bin/perl
+
+use warnings;
+use strict;
+
+use LWP::UserAgent;
+use constant ILLUMINATI => "illuminati show -";
+
+my $ua = LWP::UserAgent->new;
+$ua->agent("tarot/v1.0");
+
+my $req = HTTP::Request->new(
+	GET => $ARGV[0]
+);
+
+my $res = $ua->request($req);
+if ($res->is_success) {
+	open(my $fh, "|-", ILLUMINATI);
+	print $fh $res->content;
+} else {
+	print STDERR $ARGV[0].": ".$res->status_line."\n";
+}
